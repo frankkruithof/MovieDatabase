@@ -1,3 +1,6 @@
+## Live demo
+https://movie-database-tan.vercel.app/
+
 ## Searchable movie database
 A web application that allows users to search for movies using the OMDB API. The application is built with Next.js and uses Chakra UI for styling.
 
