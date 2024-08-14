@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Center, Heading } from "@chakra-ui/react";
 import { useMovies } from "./hooks/useMovies";
@@ -10,7 +10,7 @@ import { Loader } from "./components/Loader";
 import { AlertMessage } from "./components/AlertMessage";
 
 
-export default function Home() {
+function HomePage() {
     const { movies, error, loading, loadingMore, searchMovies, loadMoreMovies } = useMovies();
     const [searchComplete, setSearchComplete] = useState<boolean>(false);
     const router = useRouter();
@@ -64,5 +64,13 @@ export default function Home() {
             {renderNoMoviesFound()}
             {renderMovies()}
         </>
+    );
+}
+
+export default function Home() {
+    return (
+        <Suspense fallback={<Loader />}>
+            <HomePage />
+        </Suspense>
     );
 }
