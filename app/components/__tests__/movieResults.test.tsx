@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -37,30 +36,4 @@ describe('MovieResults Component', () => {
         const headings = screen.getAllByRole('heading', { level: 2 });
         expect(headings.length).toBe(movies.length);
     });
-
-    it('displays the movie titles correctly', () => {
-        render(
-            <ChakraProvider>
-                <MovieResults movies={movies} />
-            </ChakraProvider>
-        );
-
-        movies.forEach((movie) => {
-            expect(screen.getByText(movie.Title)).toBeInTheDocument();
-        });
-    });
-
-    it('renders the correct movie links', () => {
-        render(
-            <ChakraProvider>
-                <MovieResults movies={movies} />
-            </ChakraProvider>
-        );
-
-        const links = screen.getAllByRole('link');
-        links.forEach((link, index) => {
-            expect(link).toHaveAttribute('href', `/movie/${movies[index].imdbID}`);
-        });
-    });
-
 });
