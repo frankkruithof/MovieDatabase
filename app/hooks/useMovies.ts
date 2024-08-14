@@ -30,7 +30,7 @@ export const useMovies = (): MovieApiResult => {
         try {
             const data = await apiRequest<T>(url);
             const apiError = handleApiError(data, isLoadMore);
-            if (error) {
+            if (apiError) {
                 setError(apiError);
                 return;
             }
